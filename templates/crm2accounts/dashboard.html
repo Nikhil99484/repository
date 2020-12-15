@@ -1,0 +1,88 @@
+{% extends 'crm2accounts/base.html' %}
+<html>
+<head>
+    <title>home</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+{% block content %}
+<style>
+body{background-color: lightcyan}
+</style>
+{% include 'crm2accounts/status.html' %}
+    <br>
+<div class="container-fluid" style="margin-top: 5px">
+<div class="row">
+    <div class="col-md-4">
+    <br>
+    <center>
+        <a class="btn btn-success" href="{% url 'create_order' %}">Place a Order</a>
+    </center>
+    <br>
+        <div class="card text-white text-center bg-dark">
+            <div class="card-header">
+                <h4 class="card-title">Ordered Customer</h4>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered table-sm text-center bg-primary text-white">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Phone</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for customer in customers %}
+                            <tr class="bg-warning">
+                                <td><a href="{% url 'customer' customer.id %}">View</a></td>
+                                <td>{{ customer.name }}</td>
+                                <td>{{ customer.mobile }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+<div class="col-md-8">
+    <div class="card text-white bg-dark text-center">
+        <div class="card-header">
+            <h4 class="card-title">Ordered Products</h4>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-sm text-center bg-primary text-white">
+                <thead class="bg-info">
+                    <tr>
+                        <th>Name</th>
+                        <th>Created_Date</th>
+                        <th>Status</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for order in orders %}
+                    <tr>
+                    <td>{{ order.product}}</td>
+                    <td>{{ order.created_date }}</td>
+                    <td>{{ order.status }}</td>
+                    <td><a href="{% url 'update_order' order.id %}" class="bg-success btn">Update</a></td>
+                    <td><a href="{% url 'delete_order' order.id %}" class="bg-danger btn">Delete</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+{% endblock %}
+</body>
+</html>

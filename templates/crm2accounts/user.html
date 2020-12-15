@@ -1,0 +1,51 @@
+{% extends 'crm2accounts/base.html' %}
+<html>
+<head>
+    <title>userpage</title>
+</head>
+<body>
+{% block content %}
+<style>
+body{background-color: lightblue}
+h2{background-color: yellow;font-size: 50px;font-family: "Centaur";color: blue}
+</style>
+<h2 class="text-center" style="margin-bottom: 10px;">{{ customer.name }} Detailes</h2>
+    {% include 'crm2accounts/status.html' %}
+<br>
+<div class="container">
+<div class="row">
+    <div class="col-md">
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-bordered text-center table-hover">
+                    <thead>
+                    <tr class="bg-success text-white text-center">
+                        <th>Customer Name</th>
+                        <th>Product Name</th>
+                        <th>Product Category</th>
+                        <th>Product Price</th>
+                        <th>Product Status</th>
+                        <th>Product Order Date</th>
+                    </tr>
+                    </thead>
+                    <tbody class="bg-warning text-white">
+                    {% for order in orders %}
+                        <tr>
+                        <td>{{ order.customer.name }}</td>
+                        <td>{{ order.product }}</td>
+                        <td>{{ order.product.category }}</td>
+                        <td>{{ order.product.price }}</td>
+                        <td>{{ order.status }}</td>
+                        <td>{{ order.created_date }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
+</body>
+</html>

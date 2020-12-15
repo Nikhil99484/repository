@@ -1,0 +1,12 @@
+<html>
+<head>
+    <title>update customer</title>
+</head>
+<body>
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" name="submit" class="btn btn-success">
+</form>
+</body>
+</html>

@@ -1,0 +1,47 @@
+{% extends 'crm2accounts/base.html' %}
+<html>
+<head>
+    <title>products</title>
+</head>
+<body>
+{% block content %}
+<h1 class="bg-success text-white text-center" style="margin-top: 5px;font-family: 'Andale Mono'">Product Details</h1>
+<div class="container-fluid">
+<div class="row">
+    <div class="col-md">
+        <div class="card">
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                    <tr class="bg-info text-center text-white">
+                        <th>Product Name</th>
+                        <th>Product Price</th>
+                        <th>Product Order Date</th>
+                        <th>Product Category</th>
+                        <th>Product Description</th>
+                        <th>Choose Your Option</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for product in products %}
+                            <tr class="text-center">
+                            <td>{{ product.name }}</td>
+                            <td>{{ product.price }}</td>
+                            <td>{{ product.created_date }}</td>
+                            <td>{{ product.category }}</td>
+                            <td>{{ product.description }}</td>
+                            <td><a class="btn btn-success" href="{% url 'update_product' product.id %}" >update</a>
+                                <a class="btn btn-danger" href="{% url 'delete_product' product.id %}" >Delete</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}
+</body>
+</html>
